@@ -4,10 +4,10 @@ const Timer = std.time.Timer;
 const Allocator = std.mem.Allocator;
 
 // calculate statistics from the last N samples
-pub var SAMPLE_SIZE = 10_000;
+pub const SAMPLE_SIZE = 10_000;
 
 // roughly how long to run the benchmark for
-pub var RUN_TIME = 1 * std.time.ns_per_s;
+pub var RUN_TIME: u64 = 3 * std.time.ns_per_s;
 
 pub const Result = struct {
 	total: u64,

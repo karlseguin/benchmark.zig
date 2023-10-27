@@ -13,9 +13,9 @@ pub fn main() !void {
   (try benchmark.run(indexOfPosLinear)).print("indexOfPosLinear");
 }
 
-fn indexOfScalar(_: Allocator, _timer: *std.time.Timer) !void {
+fn indexOfScalar(_: Allocator, timer: *std.time.Timer) !void {
   // you can do expensive setup, and then call:
-  // timer.reset()
+  timer.reset();
   // to exclude the setup from the measurement
 
   const input = "it's over 9000!!";

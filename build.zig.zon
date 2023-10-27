@@ -1,0 +1,5 @@
+.{
+	.name = "benchmark",
+	.paths = .{""},
+	.version = "0.0.0",
+}

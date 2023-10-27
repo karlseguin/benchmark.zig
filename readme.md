@@ -1,5 +1,7 @@
 # Simple Benchmarking for Zig
 
+This module is a single file, you can either import it using Zig modules, or simply copy and paste benchmark.zig into your project.
+
 ```zig
 const std = @import("std");
 const benchmark = @import("benchmark");

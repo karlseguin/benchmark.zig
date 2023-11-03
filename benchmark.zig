@@ -16,23 +16,23 @@ pub const Result = struct {
 	// sorted, use samples()
 	_samples: [SAMPLE_SIZE]u64,
 
-	pub fn print(self: Result, name: []const u8) void {
+	pub fn print(self: *const Result, name: []const u8) void {
 		std.debug.print("{s}\n", .{name});
 		std.debug.print("  {d} iterations\t{d:.2}ns per iterations\n", .{self.iterations, self.mean()});
 		std.debug.print("  {d:.2} bytes per iteration\n", .{self.requested_bytes / self.iterations});
 		std.debug.print("  worst: {d}ns\tmedian: {d:.2}ns\tstddev: {d:.2}ns\n\n", .{self.worst(), self.median(), self.stdDev()});
 	}
 
-	pub fn samples(self: Result) []const u64 {
+	pub fn samples(self: *const Result) []const u64 {
 		return self._samples[0..@min(self.iterations, SAMPLE_SIZE)];
 	}
 
-	pub fn worst(self: Result) u64 {
+	pub fn worst(self: *const Result) u64 {
 		const s = self.samples();
 		return s[s.len - 1];
 	}
 
-	pub fn mean(self: Result) f64 {
+	pub fn mean(self: *const Result) f64 {
 		const s = self.samples();
 
 		var total: u64 = 0;
@@ -42,12 +42,12 @@ pub const Result = struct {
 		return @as(f64, @floatFromInt(total)) / @as(f64, @floatFromInt(s.len));
 	}
 
-	pub fn median(self: Result) u64 {
+	pub fn median(self: *const Result) u64 {
 		const s = self.samples();
 		return s[s.len / 2];
 	}
 
-	pub fn stdDev(self: Result) f64 {
+	pub fn stdDev(self: *const Result) f64 {
 		const m = self.mean();
 		const s = self.samples();
 

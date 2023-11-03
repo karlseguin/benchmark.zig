@@ -53,7 +53,8 @@ pub const Result = struct {
 
 		var total: f64 = 0.0;
 		for (s) |value| {
-			total += std.math.pow(f64, @as(f64, @floatFromInt(value)) - m, 2);
+			const t = @as(f64, @floatFromInt(value)) - m;
+			total += t * t;
 		}
 		const variance = total / @as(f64, @floatFromInt(s.len - 1));
 		return std.math.sqrt(variance);
